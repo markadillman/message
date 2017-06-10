@@ -478,7 +478,7 @@ function loadPlatforms() {
 		.color('green');
 	// Toni added a ton more platforms to make more of the world accessible
 	for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight/2) {
-		if (j > 100 || j < 50) { // draw full width
+		if (j > playerSpawnY + 100 || j < playerSpawnY - 100) { // draw full width
 			Crafty.e('Platform, 2D, Canvas, Color')
 				.attr({x: -1 * (13 * tileWidth), y: j, w: 26*tileWidth, h: 5})
 				.color('green');
