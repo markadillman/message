@@ -1044,15 +1044,15 @@ function assetRender(assets,argsocket){
 	}
 	// start Toni's code
 	// add the calls to update platforms and player here!
-	loadPlatforms();
 	// use a delay to make *sure* the background is loaded first
 	if (firstWorldEntry) {
-	Crafty.e('Delay').delay(function(){
-			if (debugging) {
-				console.log("Waited.");
-			}
-			loadPlayer(argsocket);
-		}, playerSpawnDelay, 0);
+		loadPlatforms();
+		Crafty.e('Delay').delay(function(){
+				if (debugging) {
+					console.log("Waited.");
+				}
+				loadPlayer(argsocket);
+			}, playerSpawnDelay, 0);
 	}
 	// end Toni's code
 }
