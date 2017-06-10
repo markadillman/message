@@ -384,8 +384,8 @@ Game =
 			playing = true;
 
 			//initialize a new socketio
-			socket = io('http://52.42.5.103:8080'); //<-- production
-			//socket = io('http://192.168.2.50:8080'); //<-- Mark's test env
+			//socket = io('http://52.42.5.103:8080'); //<-- production
+			socket = io('http://192.168.2.50:8080'); //<-- Mark's test env
 			socket.on('assign id', function(data){
 				socketId = data.id;
 				console.log("GOT SOCKET ID:");
@@ -669,57 +669,22 @@ function loadPlayer(argsocket) {
 	    	for (key in playerPositionMap){
 	    		if (key === eventData.id){
 	    			targetKey = key;
-	    			if (verboseDebugging){
-	    				console.log("KEYS HERE");
-	    				console.log(targetKey);
-	    				console.log("Crafty ID");
-	    				console.log(playerPositionMap);
-	    			}
 	    			//delete crafty entity
 	    			var deathmarkedEntity = Crafty(playerPositionMap[targetKey]);
-	    			console.log("pay attention:");
-	    			console.log(deathmarkedEntity);
 	    			deathmarkedEntity.destroy();
 	    		}
 	    		else {
-	    			console.log("NO MATCH. KEY:");
-	    			console.log(key)
 	    		}
 	    	}
 	    	delete playerPositionMap[eventData.id];
-	    	if (verboseDebugging){
-	      		console.log("Player position map post logoff");
-	      		console.log(playerPositionMap);
-	      	}
 	    })
 	    //update the position map with new data. Event data is complete wherabouts of active players keyed by id
 	    .bind('UpdateMap',function(eventData){
-	      	if (verboseDebugging)
-	      	{
-	      		console.log("event data");
-	      		console.log(eventData);
-	      	}
 	      	//for each player, update position if entity exists
 	      	for (key in eventData){
-	      		if (verboseDebugging)
-	      		{
-	      			console.log("player position map");
-	      			console.log(playerPositionMap);
-	      			console.log("socket id");
-	      			console.log(socketId);
-	      		}
 	      		//if the ID is not in the current mapping data structure and if map structure aint empty
 	      		if (playerPositionMap[key] === undefined && !(key === socketId)){
-	      			if (verboseDebugging)
-	      			{
-	      				console.log("SEARCH FOR THIS!");
-	      				console.log("SHOULDNT BE HERE WITHOUT ANOTHER PLAYER");
-	      			}
-	      			//query for the avatar
-	      			if (verboseDebugging){
-	      				console.log("Yo who dis guy already");
-	      				console.log(key);
-	      			}
+
 	      				//this function will either create a different colored rectangle or, in the future,
 	      				//load the player's avatar into memory and start rendering it over their hitbox
 	      				var oldPlayer = Crafty.e('2D, Canvas, Color, Twoway, Gravity')
@@ -742,19 +707,10 @@ function loadPlayer(argsocket) {
 	      		//if player is pre-existing player that does not have an avatar, make one
 	      		else {
 	      			//KEEP BELOW HERE AFTER PASTE
-	      			if (verboseDebugging)
-	      			{
-	      				console.log("SHOULD BE HERE NOW");
-	      				console.log(playerPositionMap[key]);
-	      			}
 	      			//look up crafty entity for this player
 	      			var targetPlayer = Crafty(playerPositionMap[key]);
 	      			targetPlayer.x = eventData[key]['x'];
 	      			targetPlayer.y = eventData[key]['y'];
-	      			if (verboseDebugging)
-	      			{
-	      				console.log(playerPositionMap);	
-	      			}
 	      		}
 	      	}
 	    })
@@ -784,13 +740,6 @@ function loadPlayer(argsocket) {
 	    .bind("EnterFrame",function(eventData){
 	      	if (eventData.frame % netFrameRate === 0){
 	      		if (mode === gameMode && playing === true){
-	      			//DEBUG
-	      			//console.clear();
-	      			if (verboseDebugging)
-	      			{
-	      				console.log("player position map");
-	      				console.log(playerPositionMap);
-	      			}
 	      			//END DEBUG
 	      			argsocket.emit('changeCoords', {x : this.x , y : this.y , id : socketId});
 	      			argsocket.emit('position request');
