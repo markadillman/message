@@ -445,7 +445,7 @@ Game =
 // loadPlatforms code moved here
 function loadPlatforms() {
 	// Platforms
-	Crafty.e('Platform, 2D, Canvas, Color')
+	/*Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: 0, y: 250, w: 250, h: 10})
 		.color('green');
 	Crafty.e('Platform, 2D, Canvas, Color')
@@ -456,26 +456,26 @@ function loadPlatforms() {
 		.color('green');
 	Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: 170, y: 540, w: 100, h: 10})
-		.color('green');
+		.color('green');*/
 	// Toni added a platform under the spawn point
 	Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: playerSpawnX - 35, y: playerSpawnY + 125, w: 100, h: 10})
 		.color('green');
 	// Toni added platforms to allow us to get to the top 3 tiles for now
-	Crafty.e('Platform, 2D, Canvas, Color')
+	/*Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: playerSpawnX - 50, y: playerSpawnY - 30, w: 100, h: 10})
 		.color('green');
 	Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: -1000, y: 10, w: 2000, h: 10})
-		.color('green');
+		.color('green');*/
 	// Toni added a platform to allow us to get to the middle 2 outside tiles for now
-	Crafty.e('Platform, 2D, Canvas, Color')
+	/*Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: -2000, y: canvasHeight - canvasEdge, w: 4000, h: 10})
 		.color('green');
 	// Floor
 	Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: -4000, y: 590, w: 8000, h: 10})
-		.color('green');
+		.color('green');*/
 	// Toni added a ton more platforms to make more of the world accessible
 	for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight/2) {
 		if (j > playerSpawnY + 100 || j < playerSpawnY - 100) { // draw full width
@@ -484,10 +484,10 @@ function loadPlatforms() {
 				.color('green');
 		} else { // don't draw through spawn point in tree
 			Crafty.e('Platform, 2D, Canvas, Color')
-				.attr({x: -1 * (13 * tileWidth), y: j, w: 12*tileWidth, h: 5})
+				.attr({x: -1 * (13 * tileWidth), y: j, w: 13*tileWidth, h: 5})
 				.color('green');
 			Crafty.e('Platform, 2D, Canvas, Color')
-				.attr({x: 13 * tileWidth, y: j, w: 26*tileWidth, h: 5})
+				.attr({x: tileWidth, y: j, w: 26*tileWidth, h: 5})
 				.color('green');
 		}
 	}
