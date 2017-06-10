@@ -523,6 +523,7 @@ function loadPlayer(argsocket) {
 			{
 				if(avatarFrozen)
 				{
+					this.y -= 3;
                     this.gravity('Platform');
                     this.enableControl();
 				}
