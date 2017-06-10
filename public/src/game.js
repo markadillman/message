@@ -93,6 +93,9 @@ var firstWorldEntry = true;
 var currentPlayerX;
 var currentPlayerY;
 
+// Toni added tracker for current platform z value
+var currentPlatformZ = -1;
+
 // Toni added variables for the avatar carousel
 var numAvatars = 0;
 var myAvatars = "myAvatars";
@@ -474,8 +477,8 @@ function loadPlatforms() {
 		.attr({x: -4000, y: 590, w: 8000, h: 10})
 		.color('green');
 	// Toni added a ton more platforms to make more of the world accessible
-	for (var i = -1 * (13 * tileWidth); i < (13 * tileWidth) + 1; i += tileWidth) {
-		for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight) {
+	for (var i = -1 * (13 * tileWidth); i < (13 * tileWidth) + 1; i += tileWidth/2) {
+		for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight/2) {
 			Crafty.e('Platform, 2D, Canvas, Color')
 				.attr({x: i, y: j, w: 26*tileWidth, h: 5})
 				.color('green');
@@ -484,7 +487,7 @@ function loadPlatforms() {
 		
 	// set platform z between background and avatar
 	Crafty('Platform').each(function() {
-		this.z = -1;
+		this.z = currentPlatformZ;
 	});
 		
 	// debug message
@@ -590,6 +593,9 @@ function loadPlayer(argsocket) {
 					Crafty('Platform').each(function() {
 						this.z *= -1;
 					});
+					
+					// toggle the tracker
+					currentPlatformZ *= -1;
 					
 					// ### consider adding fade to background art
 					// and toggling that here
