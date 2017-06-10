@@ -477,10 +477,17 @@ function loadPlatforms() {
 		.attr({x: -4000, y: 590, w: 8000, h: 10})
 		.color('green');
 	// Toni added a ton more platforms to make more of the world accessible
-	for (var i = -1 * (13 * tileWidth); i < (13 * tileWidth) + 1; i += tileWidth/2) {
-		for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight/2) {
+	for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight/2) {
+		if (j > 100 || j < 50) { // draw full width
 			Crafty.e('Platform, 2D, Canvas, Color')
-				.attr({x: i, y: j, w: 26*tileWidth, h: 5})
+				.attr({x: -1 * (13 * tileWidth), y: j, w: 26*tileWidth, h: 5})
+				.color('green');
+		} else { // don't draw through spawn point in tree
+			Crafty.e('Platform, 2D, Canvas, Color')
+				.attr({x: -1 * (13 * tileWidth), y: j, w: 12*tileWidth, h: 5})
+				.color('green');
+			Crafty.e('Platform, 2D, Canvas, Color')
+				.attr({x: 13 * tileWidth, y: j, w: 26*tileWidth, h: 5})
 				.color('green');
 		}
 	}
