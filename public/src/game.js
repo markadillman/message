@@ -567,11 +567,11 @@ function loadPlayer(argsocket) {
 				if (e.key == Crafty.keys.T) { // either game or map mode
 					// drop a teleportation marker
 					if (verboseDebugging) {
-						console.log('Teleport markers before: ', JSON.parse(localStorage.teleportMarkers));
+						//console.log('Teleport markers before: ', JSON.parse(localStorage.teleportMarkers));
 					}
 					placeTeleMarker(player.x, player.y);
 					if (verboseDebugging) {
-						console.log('Teleport markers after: ', JSON.parse(localStorage.teleportMarkers));
+						//console.log('Teleport markers after: ', JSON.parse(localStorage.teleportMarkers));
 					}
 				}
 				if (e.key == Crafty.keys.W && mode == gameMode) { // only gameMode
