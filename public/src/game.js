@@ -14,7 +14,7 @@ the client side of The Blank.
 */
 
 var titleString = "THE BLANK";
-var creditsText = "<br>" + titleString + "<br>" +
+var creditsText = titleString + "<br>" +
 	"a clone of Evan Balster's original game titled \"Infinite Blank\"<br>" +
 	"developed as a capstone project for OSU's CS 467 in the Spring 2017 term<br><br>" +
 	"CAPSTONE TEAM ARIES<br>" +
@@ -22,7 +22,8 @@ var creditsText = "<br>" + titleString + "<br>" +
 	"Network Developer: Mark Dillman<br>" +
 	"Art Developer: Antonina (Toni) York<br><br>" +
 	"BETA TESTING AND GAME ART<br>" +
-	"The Folks at Polital Enterprises<br><br>" +
+	"The Folks at Polital Enterprises<br>" +
+	"The Nerdfighters of ANF<br><br>" +
 	"GAME MUSIC<br>" +
 	"Antonina (Toni) York";
 
@@ -472,10 +473,18 @@ function loadPlatforms() {
 	Crafty.e('Platform, 2D, Canvas, Color')
 		.attr({x: -4000, y: 590, w: 8000, h: 10})
 		.color('green');
+	// Toni added a ton more platforms to make more of the world accessible
+	for (var i = -1 * (13 * tileWidth); i < (13 * tileWidth) + 1; i += tileWidth) {
+		for (var j = -1 * (13 * tileHeight); j < (13 * tileHeight) + 1; j += tileHeight) {
+			Crafty.e('Platform, 2D, Canvas, Color')
+				.attr({x: i, y: j, w: 26*tileWidth, h: 5})
+				.color('green');
+		}
+	}
 		
 	// set platform z between background and avatar
 	Crafty('Platform').each(function() {
-		this.z = 1;
+		this.z = -1;
 	});
 		
 	// debug message
